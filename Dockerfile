@@ -24,6 +24,7 @@ RUN apt-get update && \
 
 # Create and switch to a non-root user
 RUN useradd -m -u 1001 user
+ARG USER
 USER ${user}
 ENV PATH="/home/user/.local/bin:$PATH"
 
@@ -46,6 +47,7 @@ USER root
 RUN apt-get update && apt-get install -y git && apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN rm -rf /root/.cache/pip
 # RUN pip cache purge
+ARG USER
 USER ${user}
 RUN git clone https://github.com/DrewThomasson/ebook2audiobook.git /home/user/app
 
@@ -86,6 +88,7 @@ WORKDIR /home/user/app
 
 #   && pip install torch torchaudio --extra-index-url https://download.pytorch.org/whl/cu118 \
 
+ARG USER
 RUN python3 -m venv /home/${USER}/.venv \
   && . /home/${USER}/.venv/bin/activate \
   && pip install --upgrade pip \
