@@ -107,4 +107,4 @@ RUN python3 -m venv /home/${USER}/.venv \
 EXPOSE 7860
 
 # Start the Gradio app from the repository
-CMD ["python", "app.py"]
+CMD ["python3", "app.py"]
